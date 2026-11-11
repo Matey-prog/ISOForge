@@ -1,0 +1,8 @@
+NTFS-3G 2026.9.28
+Upstream: https://github.com/tuxera/ntfs-3g
+Tag: 2026.9.28
+Commit: 7f0f841fc52cf719106c5c93bafe465004e36816
+Release source SHA-256: 350d9415c59f7c3fa74e23985ad2d56423c6a168337368f672e2e362d8f295c8
+License: GPL-2.0-or-later; full upstream source and COPYING are bundled.
+Build: scripts/build-ntfs-tools.sh (requires Xcode Command Line Tools and Homebrew autotools)
+The helper uses libntfs-3g directly on an unmounted raw partition. No NTFS filesystem driver is installed in macOS.
