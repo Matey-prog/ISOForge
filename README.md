@@ -32,7 +32,7 @@ A native SwiftUI utility for Windows UEFI installers and hybrid Linux images, wi
 Download the app from the repository’s **Releases** page, or build it locally:
 
 ```bash
-git clone https://github.com/OWNER/ISOForge.git
+git clone https://github.com/Matey-prog/ISOForge.git
 cd ISOForge
 bash scripts/build-app.sh
 ```
@@ -107,7 +107,7 @@ ISO Forge — нативна програма для macOS, що створює 
 ### Збирання та встановлення
 
 ```bash
-git clone https://github.com/OWNER/ISOForge.git
+git clone https://github.com/Matey-prog/ISOForge.git
 cd ISOForge
 bash scripts/build-app.sh
 ```
