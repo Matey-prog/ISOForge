@@ -54,6 +54,17 @@ The build fetches and bundles wimlib; Homebrew is not required. Review the inclu
 
 The language menu in the top-right lets you choose **System language**, **Українська**, or **English**. System language follows the macOS preferred language: Ukrainian for Ukrainian, English for every other language.
 
+### If macOS blocks the app
+
+If Gatekeeper says the app cannot be opened because it is not from an identified developer, first make sure you downloaded it from this project's trusted GitHub **Releases** page. Then:
+
+1. Try to open **ISO Forge.app** once and dismiss the warning.
+2. Open **System Settings → Privacy & Security**.
+3. Scroll to the **Security** section and click **Open Anyway** next to the ISO Forge message. Authenticate if macOS asks.
+4. Open the app again and confirm **Open** in the prompt.
+
+The **Open Anyway** option appears after macOS has blocked the app. If it is missing, try opening the app once more and return to Privacy & Security. Do not bypass Gatekeeper for an app whose source you cannot verify.
+
 > **Warning:** Formatting erases all data on the selected target. In whole-drive mode, all partitions on that drive are erased. In partition mode, only the selected partition is formatted.
 
 > **Bootability:** Windows UEFI installers are prepared as FAT32. Firmware compatibility can vary. Directly writing a hybrid ISO to a partition does not guarantee that the computer firmware can boot it; whole-drive writing is usually the appropriate mode for hybrid images.
@@ -117,6 +128,17 @@ bash scripts/build-app.sh --install
 4. Дочекайтеся завершення запису та перевірки SHA-256.
 
 Меню мови у правому верхньому куті пропонує **Мова системи**, **Українська** та **English**. Автоматичний режим використовує українську, якщо основна мова macOS — українська; для будь-якої іншої мови вмикається англійська.
+
+### Якщо macOS блокує програму
+
+Якщо Gatekeeper повідомляє, що програму не можна відкрити, бо її розробника не вдалося ідентифікувати, спершу переконайтеся, що завантажили її з довіреної сторінки **Releases** цього GitHub-проєкту. Потім:
+
+1. Спробуйте відкрити **ISO Forge.app** і закрийте попередження.
+2. Відкрийте **Системні параметри → Конфіденційність і безпека**.
+3. Прокрутіть до розділу **Безпека** й натисніть **Відкрити все одно** біля повідомлення про ISO Forge. За запитом підтвердьте дію.
+4. Відкрийте програму ще раз і натисніть **Відкрити** у діалоговому вікні.
+
+Кнопка **Відкрити все одно** з’являється після того, як macOS заблокувала програму. Якщо її немає, спробуйте відкрити програму ще раз і знову перевірте розділ «Конфіденційність і безпека». Не обходьте Gatekeeper для програми, походження якої ви не можете перевірити.
 
 > **Увага:** форматування стирає дані вибраної цілі. У режимі всього диска стираються всі його розділи. У режимі окремого розділу форматується лише він.
 
