@@ -79,7 +79,9 @@ Core and disposable-image tests are in `Tests/`. They do not validate physical U
 
 ## License
 
-See the repository’s `LICENSE` and `Vendor/*/PROVENANCE.txt` and license files for project and bundled-component terms.
+ISO Forge is licensed under the **GNU General Public License v3.0 only**. The full license text is in [`LICENSE`](LICENSE).
+
+Bundled third-party components retain their own licenses and notices. See `Vendor/*/PROVENANCE.txt` and the corresponding license files before modifying or redistributing a build. Source and license notices for the bundled wimlib build are included in `Vendor/wimlib`.
 
 ---
 
@@ -154,4 +156,6 @@ swift build --disable-sandbox --scratch-path "$HOME/Library/Caches/ua.isoforge/s
 
 ### Ліцензія
 
-Умови ліцензування програми та вбудованих компонентів наведено у файлах `LICENSE`, `Vendor/*/PROVENANCE.txt` і ліцензіях компонентів.
+ISO Forge поширюється за умовами **GNU General Public License версії 3.0 (лише цієї версії)**. Повний текст ліцензії наведено у файлі [`LICENSE`](LICENSE).
+
+Вбудовані компоненти зберігають власні ліцензії та повідомлення про авторські права. Перед зміною або поширенням збірки перегляньте `Vendor/*/PROVENANCE.txt` і відповідні файли ліцензій. Вихідний код та повідомлення про ліцензію вбудованої збірки wimlib містяться в `Vendor/wimlib`.
