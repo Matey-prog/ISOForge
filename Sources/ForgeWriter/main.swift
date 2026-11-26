@@ -29,6 +29,7 @@ func execute(_ request: WriteRequest, reporter: JobReporter) throws {
         throw ForgeError.message("Вміст образу змінився. Оберіть ISO ще раз.")
     }
     var touched = false
+    var targetUnmounted = false
     var finished = false
     let parentDetails = try DiskCatalog.info(request.device.id)
     let parentBlock = (parentDetails["DeviceBlockSize"] as? NSNumber)?.intValue ?? 512
@@ -37,7 +38,14 @@ func execute(_ request: WriteRequest, reporter: JobReporter) throws {
     }
     if let partition = request.partition { try map?.assertDisjoint(offset: partition.offset, size: partition.size) }
     defer {
-        if touched && !finished {
+        if !finished && targetUnmounted && !touched {
+            reporter.append("Запис не почався; повторно монтую ціль після відмови доступу.")
+            if let partition = request.partition {
+                _ = try? CommandRunner.run("/usr/sbin/diskutil", ["mount", partition.devicePath])
+            } else {
+                _ = try? CommandRunner.run("/usr/sbin/diskutil", ["mountDisk", request.device.devicePath])
+            }
+        } else if touched && !finished {
             if let partition = request.partition {
                 reporter.append("Операцію перервано; відмонтую лише \(partition.id).")
                 if let args = try? PartitionOperations.unmountArguments(partitionID: partition.id, parentID: request.device.id) {
@@ -58,6 +66,7 @@ func execute(_ request: WriteRequest, reporter: JobReporter) throws {
         } else {
             _ = try CommandRunner.checked("/usr/sbin/diskutil", ["unmountDisk", request.device.devicePath])
         }
+        targetUnmounted = true
         try reporter.checkCancellation()
         try validate()
         let details = try DiskCatalog.info(request.targetID)
@@ -66,7 +75,10 @@ func execute(_ request: WriteRequest, reporter: JobReporter) throws {
         let sourceFD = try ByteIO.openRead(request.image.path)
         defer { close(sourceFD) }
         let destinationFD = open(request.rawTargetPath, O_RDWR | O_NOFOLLOW)
-        guard destinationFD >= 0 else { throw ByteIO.systemError("Не вдалося відкрити USB для запису") }
+        guard destinationFD >= 0 else {
+            let cause = String(cString: strerror(errno))
+            throw ForgeError.message("macOS заборонила прямий доступ до USB для запису (\(cause)). Запис не почався.")
+        }
         defer { close(destinationFD) }
         var node = stat()
         guard fstat(destinationFD, &node) == 0, (node.st_mode & S_IFMT) == S_IFCHR else { throw ForgeError.message("Ціль не є фізичним пристроєм.") }
@@ -153,7 +165,7 @@ func execute(_ request: WriteRequest, reporter: JobReporter) throws {
 
 func main() -> Int32 {
     let args = CommandLine.arguments
-    if args.count == 2 && args[1] == "--version" { print("ISO Forge Writer 1.2.2"); return 0 }
+    if args.count == 2 && args[1] == "--version" { print("ISO Forge Writer 1.2.4"); return 0 }
     guard args.count == 3, args[1] == "--request", geteuid() == 0 else {
         fputs("ForgeWriter requires an authorized ISO Forge write request.\n", stderr); return 2
     }

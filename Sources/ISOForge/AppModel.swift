@@ -366,7 +366,7 @@ final class AppModel: ObservableObject {
         panel.title = "Зберегти журнал операції"
         if panel.runModal() == .OK, let url = panel.url {
             do {
-                var text = "ISO Forge 1.2.2\n"
+                var text = "ISO Forge 1.2.4\n"
                 if let image { text += "Образ: \(image.path)\nРежим: \(image.mode.title)\n" }
                 text += (try? String(contentsOf: session.appendingPathComponent("operation.log"), encoding: .utf8)) ?? ""
                 if let status { text += "\nРезультат: \(status.phase.title)\n\(status.message)\n" }

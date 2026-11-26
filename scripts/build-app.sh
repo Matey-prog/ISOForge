@@ -44,8 +44,8 @@ cat > "$APP/Contents/Info.plist" <<'EOF'
 <key>CFBundleIdentifier</key><string>ua.isoforge.app</string>
 <key>CFBundleExecutable</key><string>ISOForge</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.2.2</string>
-<key>CFBundleVersion</key><string>2</string>
+<key>CFBundleShortVersionString</key><string>1.2.4</string>
+<key>CFBundleVersion</key><string>3</string>
 <key>CFBundleIconFile</key><string>Forge</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>

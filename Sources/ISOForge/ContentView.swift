@@ -352,7 +352,7 @@ struct ContentView: View {
             Image(systemName: "info.circle")
             Text("Linux: гібридні ISO та IMG. Windows: UEFI. Сумісність залежить від образу та комп'ютера.")
             Spacer()
-            Text("1.2.2").font(.system(size: 10, design: .monospaced))
+            Text("1.2.4").font(.system(size: 10, design: .monospaced))
         }.font(.system(size: 11)).foregroundStyle(Theme.secondary.opacity(0.7))
     }
 
