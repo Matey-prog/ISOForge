@@ -6,6 +6,8 @@
 
 A native SwiftUI utility for Windows UEFI installers and hybrid Linux images, with whole-drive and existing-partition workflows.
 
+**Latest app version: 1.2.4**
+
 [Українська версія нижче](#українська)
 
 </div>
@@ -65,6 +67,16 @@ If Gatekeeper says the app cannot be opened because it is not from an identified
 
 The **Open Anyway** option appears after macOS has blocked the app. If it is missing, try opening the app once more and return to Privacy & Security. Do not bypass Gatekeeper for an app whose source you cannot verify.
 
+### Allow USB access
+
+If ISO Forge reports **Operation not permitted** while opening a USB drive for writing, grant it Full Disk Access:
+
+1. Open **System Settings → Privacy & Security → Full Disk Access**.
+2. Click **+**, select **ISO Forge.app** (usually in `/Applications`), and enable its switch. Authenticate if prompted.
+3. Quit and reopen ISO Forge, then retry the write.
+
+macOS requires this permission for ISO Forge to access physical USB devices directly.
+
 > **Warning:** Formatting erases all data on the selected target. In whole-drive mode, all partitions on that drive are erased. In partition mode, only the selected partition is formatted.
 
 > **Bootability:** Windows UEFI installers are prepared as FAT32. Firmware compatibility can vary. Directly writing a hybrid ISO to a partition does not guarantee that the computer firmware can boot it; whole-drive writing is usually the appropriate mode for hybrid images.
@@ -90,6 +102,8 @@ Bundled third-party components retain their own licenses and notices. See `Vendo
 ## Українська
 
 ISO Forge — нативна програма для macOS, що створює завантажувальні USB-накопичувачі з ISO та IMG. Підтримує інсталяційні образи Windows UEFI, гібридні образи Linux, запис на весь зовнішній диск або на окремий наявний розділ.
+
+**Актуальна версія програми: 1.2.4**
 
 ### Можливості
 
@@ -141,6 +155,16 @@ bash scripts/build-app.sh --install
 4. Відкрийте програму ще раз і натисніть **Відкрити** у діалоговому вікні.
 
 Кнопка **Відкрити все одно** з’являється після того, як macOS заблокувала програму. Якщо її немає, спробуйте відкрити програму ще раз і знову перевірте розділ «Конфіденційність і безпека». Не обходьте Gatekeeper для програми, походження якої ви не можете перевірити.
+
+### Надати доступ до USB
+
+Якщо під час відкриття USB для запису ISO Forge показує **Operation not permitted**, надай програмі повний доступ до диска:
+
+1. Відкрий **Системні параметри → Конфіденційність і безпека → Повний доступ до диска**.
+2. Натисни **+**, вибери **ISO Forge.app** (зазвичай у `/Applications`) і ввімкни перемикач. Якщо система попросить — підтвердь дію.
+3. Закрий і знову відкрий ISO Forge, тоді повтори запис.
+
+Цей дозвіл потрібен macOS, щоб ISO Forge могла напряму працювати з фізичними USB-пристроями.
 
 > **Увага:** форматування стирає дані вибраної цілі. У режимі всього диска стираються всі його розділи. У режимі окремого розділу форматується лише він.
 
